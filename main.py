@@ -6,9 +6,14 @@ import pytz
 
 # --- CONFIG ---
 # Fetching Tomorrow.io API key and Twilio credentials from environment variables
-TOMORROW_API_KEY = os.getenv('TOMORROW_API_KEY')  # Replace with your Tomorrow.io API Key in GitHub Secrets
-TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')  # Replace with your Twilio Account SID in GitHub Secrets
-TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')  # Replace with your Twilio Auth Token in GitHub Secrets
+TOMORROW_API_KEY = os.getenv('TOMORROW_API_KEY')  # Accessing Tomorrow.io API Key from GitHub Secrets (Rainmeter environment)
+TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')  # Accessing Twilio Account SID from GitHub Secrets (Rainmeter environment)
+TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')  # Accessing Twilio Auth Token from GitHub Secrets (Rainmeter environment)
+
+# Debugging: Print out the environment variables for Twilio and Tomorrow API Key
+print(f"TWILIO_ACCOUNT_SID: {TWILIO_ACCOUNT_SID}")
+print(f"TWILIO_AUTH_TOKEN: {TWILIO_AUTH_TOKEN}")
+print(f"TOMORROW_API_KEY: {TOMORROW_API_KEY}")
 
 # Twilio WhatsApp numbers (these are standard Twilio numbers)
 TWILIO_WHATSAPP_NUMBER = 'whatsapp:+14155238886'  # Twilio WhatsApp number (do not change this)
@@ -75,6 +80,10 @@ def check_rain():
 
 # Function to send a WhatsApp message via Twilio
 def send_whatsapp_alert(message):
+    if not TWILIO_ACCOUNT_SID or not TWILIO_AUTH_TOKEN:
+        print("Error: Twilio credentials are missing!")
+        return
+    
     client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
     message = client.messages.create(
         body=message,
