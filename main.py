@@ -5,13 +5,14 @@ from datetime import datetime
 import pytz
 
 # --- CONFIG ---
-TOMORROW_API_KEY = os.getenv('TOMORROW_API_KEY')  # Fetching Tomorrow.io API key from environment variables
-TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')  # Fetching Twilio Account SID from environment variables
-TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')  # Fetching Twilio Auth Token from environment variables
+# Fetching Tomorrow.io API key and Twilio credentials from environment variables
+TOMORROW_API_KEY = os.getenv('TOMORROW_API_KEY')  # Replace with your Tomorrow.io API Key in GitHub Secrets
+TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')  # Replace with your Twilio Account SID in GitHub Secrets
+TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')  # Replace with your Twilio Auth Token in GitHub Secrets
 
-# Twilio WhatsApp numbers (directly in the code)
-TWILIO_WHATSAPP_NUMBER = 'whatsapp:+14155238886'  # Twilio WhatsApp number
-RECIPIENT_WHATSAPP = 'whatsapp:+8801978163944'  # Recipient's WhatsApp number
+# Twilio WhatsApp numbers (these are standard Twilio numbers)
+TWILIO_WHATSAPP_NUMBER = 'whatsapp:+14155238886'  # Twilio WhatsApp number (do not change this)
+RECIPIENT_WHATSAPP = 'whatsapp:+8801978163944'  # Replace with the recipient's WhatsApp number
 
 # --- WEATHER CONFIG ---
 LATITUDE = 23.726658238586133  # Latitude for the given location (Dhaka University)
