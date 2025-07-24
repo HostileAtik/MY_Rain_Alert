@@ -2,8 +2,8 @@ name: Run Script Daily
 
 on:
   schedule:
-    - cron: '1 0 * * *'  # Runs every day at 12:01 AM UTC
-  workflow_dispatch:  # Allows manual trigger
+    - cron: '1 0 * * *'  # Runs every day at 12:01 AM UTC (5:01 AM BDT)
+  workflow_dispatch:  # This allows you to manually trigger the workflow
 
 jobs:
   run_script:
@@ -22,12 +22,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Debugging: Print Secrets (For Debugging Only!)
-        run: |
-          echo "TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}"
-          echo "TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}"
-          echo "TOMORROW_API_KEY: ${{ secrets.TOMORROW_API_KEY }}"
-
       - name: Run Python script
         env:
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
@@ -35,3 +29,4 @@ jobs:
           TOMORROW_API_KEY: ${{ secrets.TOMORROW_API_KEY }}
         run: |
           python main.py
+
