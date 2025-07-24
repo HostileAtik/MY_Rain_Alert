@@ -1,0 +1,27 @@
+name: Run Script Daily
+
+on:
+  schedule:
+    # Runs every day at 12:01 AM UTC (5:01 AM BDT)
+    - cron: '1 0 * * *'
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Python script
+        run: |
+          python main.py
